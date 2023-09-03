@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <!--
+      Need a visual blank slate?
+      Remove all code in `styles.css`!
+    -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="streak">DAY <br /><span id="days">1</span></div>
+    <div class="plus button" onclick="addValue()">+</div>
+    <div class="minus button" onclick="subValue()">-</div>
+    <script>
+      var firebaseConfig = {
+        apiKey: 'AIzaSyAg9FBWiuS9FNt5XniGurL2I2aez0FXF8k',
+        authDomain: 'formapp-bb3c9.firebaseapp.com',
+        databaseURL: 'https://formapp-bb3c9-default-rtdb.firebaseio.com',
+      };
+      firebase.initializeApp(firebaseConfig);
+
+      // Get the data from the Firebase database
+      var dataRef = firebase.database().ref('/');
+      dataRef.on('value', function (snapshot) {
+        var days = document.getElementById('days');
+        days.innerHTML = snapshot.val().count.value;
+        console.log(snapshot.val().count);
+      });
+
+      function addValue() {
+        var days = document.getElementById('days');
+        let current_date = days.innerHTML;
+        days.innerHTML = Number(current_date) + 1;
+        var dataRef = firebase.database().ref('/count');
+        dataRef.update({
+          value: Number(current_date) + 1,
+        });
+      }
+
+      function subValue() {
+        var days = document.getElementById('days');
+        let current_date = days.innerHTML;
+        days.innerHTML = Number(current_date) - 1;
+        var dataRef = firebase.database().ref('/count');
+        dataRef.update({
+          value: Number(current_date) - 1,
+        });
+      }
+    </script>
+  </body>
+</html>

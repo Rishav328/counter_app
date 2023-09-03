@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  color: black;
+  background-color: white;
+}
+
+.streak {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(32, 44, 212);
+  text-align: center;
+  padding: 30%;
+}
+
+span {
+  font-size: 50px;
+  color: black;
+}
+
+.button {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(226, 43, 134);
+  color: white;
+  font-weight: 1000;
+  font-size: 30px;
+  text-align: center;
+  border-radius: 100%;
+}
+
+.plus {
+  position: fixed;
+  bottom: 100px;
+  left: 20%;
+}
+
+.minus {
+  position: fixed;
+  bottom: 100px;
+  right: 20%;
+}
